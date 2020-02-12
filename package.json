@@ -1,5 +1,5 @@
 {
-  "name": "lean-travel",
+  "name": "learn-travel",
   "version": "1.0.0",
   "description": "A Vue.js project",
   "author": "袁振 <lmsk2013@outlook.com>",
@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "fastclick": "^1.0.6",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
@@ -29,7 +31,7 @@
     "chalk": "^2.0.1",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
-    "eslint": "^4.15.0",
+    "eslint": "^4.19.1",
     "eslint-config-standard": "^10.2.1",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
