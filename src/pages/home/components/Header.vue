@@ -8,7 +8,7 @@
       输入城市经典/游玩主题
     </div>
     <div class="header-right">
-      城市
+      {{this.city}}
       <span class="iconfont arrow-icon">&#xe64a;</span>
     </div>
   </div>
@@ -16,7 +16,10 @@
 
 <script type="text/javascript">
 export default {
-  name: 'HomeHeader'
+  name: 'HomeHeader',
+  props: {
+    city: String
+  }
 }
 // 1rem = html font-size = 50px(reset中设置的)
 // 图片给的是2倍像素

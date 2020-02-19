@@ -1,8 +1,8 @@
 <template>
   <div class="warpper">
-    <swiper :options="swiperOption">
+    <swiper :options="swiperOption" v-if="showSwiper">
         <!-- slides -->
-        <swiper-slide v-for="item of swiperList" :key="item.id">
+        <swiper-slide v-for="item of list" :key="item.id">
             <img class="swiper-img" :src="item.imgUrl" />
         </swiper-slide>
         <!-- Optional controls -->
@@ -14,6 +14,9 @@
 <script>
 export default {
   name: 'HomeSwiper',
+  props: {
+    list: Array
+  },
   data () {
     return {
       swiperOption: {
@@ -23,14 +26,12 @@ export default {
           bulletActiveClass: 'bullet-active'
         },
         loop: true
-      },
-      swiperList: [{
-        id: '0001',
-        imgUrl: '//imgs.qunarzz.com/vc/44/e9/86/95bc36c9e1c06ebd68bdfe222e.jpg_92.jpg'
-      }, {
-        id: '0002',
-        imgUrl: '//imgs.qunarzz.com/vc/24/36/10/3fc94d042ae62de380581d4c98.jpg_92.jpg'
-      }]
+      }
+    }
+  },
+  computed: {
+    showSwiper () {
+      return this.list.length
     }
   }
 }
