@@ -15,6 +15,8 @@ import HomeIcons from './components/Icons'
 import HomeRecommend from './components/Recommend'
 import HomeWeekend from './components/Weekend'
 import axios from 'axios'
+import { mapState } from 'vuex'
+
 export default {
   name: 'Home',
   components: {
@@ -26,15 +28,19 @@ export default {
   },
   data () {
     return {
+      lastCity: '',
       swiperList: [],
       iconList: [],
       recommendList: [],
       weekendList: []
     }
   },
+  computed: {
+    ...mapState(['city'])
+  },
   methods: {
     getHomeInfo () {
-      axios.get('/api/index.json')
+      axios.get('/api/index.json?city=' + this.city)
         .then(this.getHomeInfoSucc)
     },
     getHomeInfoSucc (res) {
@@ -49,7 +55,19 @@ export default {
     }
   },
   mounted () {
+    // 首次渲染时 初始化lastCity
+    this.lastCity = this.city
     this.getHomeInfo()
+  },
+  activated () {
+    // 当页面加上被keep-alive标签包裹时，新增此生命周期钩子
+    // 该钩子为页面重新展示时调用
+    if (this.lastCity !== this.city) {
+      // 重现展示时查看 lastCity是否和 city相等
+      // 不同时重新请求内容
+      this.lastCity = this.city
+      this.getHomeInfo()
+    }
   }
 }
 </script>
