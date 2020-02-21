@@ -23,7 +23,8 @@
       </div>
       <div class="area"
            v-for="(item, key) of cities"
-           :key="key">
+           :key="key"
+           :ref="key">
         <div class="title border-topbottom">{{key}}</div>
         <div class="item-list">
           <div class="item border-bottom"
@@ -44,11 +45,22 @@ export default {
   name: 'CityList',
   props: {
     cities: Object,
-    hot: Array
+    hot: Array,
+    letter: String
   },
   mounted () {
     // 在页面渲染时，初始化滚动对象
     this.scroll = new Bsrcoll(this.$refs.wrapper)
+  },
+  watch: {
+    // 监听letter的变化，发生变化时，滚动到对应的element
+    // $refs[key]获取到的是一个数组（可获取多个），取其第一个才是对应的元素
+    letter () {
+      if (this.letter) {
+        const element = this.$refs[this.letter][0]
+        this.scroll.scrollToElement(element)
+      }
+    }
   }
 }
 </script>
