@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import fastClick from 'fastclick'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import store from './store'
 
 import 'styles/reset.css'
 import 'styles/border.css'
@@ -19,6 +20,7 @@ Vue.use(VueAwesomeSwiper)
 new Vue({
   el: '#app',
   router,
+  store,
   // 等价于 App : App es6中 key value相同不需要写完整
   components: { App },
   template: '<App/>'

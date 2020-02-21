@@ -7,7 +7,9 @@
         <div class="title border-topbottom">当前城市</div>
         <div class="button-list">
           <div class="button-wrapper">
-            <div class="button">济南</div>
+            <div class="button">
+                 {{this.city}}
+            </div>
           </div>
         </div>
       </div>
@@ -16,7 +18,8 @@
         <div class="button-list">
           <div class="button-wrapper"
                v-for="item of hot"
-               :key="item.id">
+               :key="item.id"
+               @click="handleCityClick(item.name)">
             <div class="button">{{item.name}}</div>
           </div>
         </div>
@@ -29,7 +32,8 @@
         <div class="item-list">
           <div class="item border-bottom"
                v-for="city of item"
-               :key="city.id">
+               :key="city.id"
+               @click="handleCityClick(city.name)">
                {{city.name}}
           </div>
         </div>
@@ -41,12 +45,25 @@
 <script>
 // 引入better-scroll
 import Bsrcoll from 'better-scroll'
+import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'CityList',
   props: {
     cities: Object,
     hot: Array,
     letter: String
+  },
+  computed: {
+    // 利用mapState将state中的数据映射为计算属性
+    ...mapState(['city'])
+  },
+  methods: {
+    handleCityClick (city) {
+      this.changeCity(city)
+      this.$router.push('/')
+    },
+    // 利用mapMutations将mutations映射为私有方法
+    ...mapMutations(['changeCity'])
   },
   mounted () {
     // 在页面渲染时，初始化滚动对象

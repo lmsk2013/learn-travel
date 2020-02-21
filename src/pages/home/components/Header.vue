@@ -17,10 +17,12 @@
 </template>
 
 <script type="text/javascript">
+import { mapState } from 'vuex'
 export default {
   name: 'HomeHeader',
-  props: {
-    city: String
+  computed: {
+    // 利用mapState将state中的数据映射为计算属性
+    ...mapState(['city'])
   }
 }
 // 1rem = html font-size = 50px(reset中设置的)
@@ -52,7 +54,9 @@ export default {
       border-radius: .1rem
       color: #ccc
     .header-right
-      width: 1.24rem
+      // 设置最小宽度不设置宽度使其可以自由伸展
+      min-width: 1.04rem
+      padding 0 .1rem
       float: right
       text-align: center
       color: #fff
