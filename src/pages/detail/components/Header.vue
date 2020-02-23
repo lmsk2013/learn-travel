@@ -47,7 +47,13 @@ export default {
   },
   activated () {
     // 页面展示时添加滚动绑定事件
+    // 这种事件会绑定在window（全局）上，影响其他组件
+    // 需要解绑全局事件
     window.addEventListener('scroll', this.handleScroll)
+  },
+  deactivated () {
+    // 页面隐藏时解绑全局事件
+    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>
