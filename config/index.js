@@ -9,14 +9,11 @@ module.exports = {
 
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: '/travel',
     // 路径代理 将localhost的api请求转发给本地的mock
     proxyTable: {
       '/api': {
-        target: 'http://localhost:8080',
-        pathRewrite:{
-          '^/api': '/static/mock'
-        }
+        target: 'http://localhost:80'
       }
     },
 
@@ -58,7 +55,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: '/travel',
 
     /**
      * Source Maps
