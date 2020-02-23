@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/pages/home/Home'
-import City from '@/pages/city/City'
-import Detail from '@/pages/detail/Detail'
 
 Vue.use(Router)
 
@@ -11,18 +8,18 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: () => import('@/pages/home/Home')
     },
     {
       path: '/city',
       name: 'City',
-      component: City
+      component: () => import('@/pages/city/City')
     },
     {
       // 路径里的参数用:key体现
       path: '/detail/:id',
       name: 'Detail',
-      component: Detail
+      component: () => import('@/pages/detail/Detail')
     }
   ],
   // 解决滚动影响所有页面的问题
