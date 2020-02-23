@@ -24,5 +24,12 @@ export default new Router({
       name: 'Detail',
       component: Detail
     }
-  ]
+  ],
+  // 解决滚动影响所有页面的问题
+  scrollBehavior (to, from, savedPosition) {
+    return {
+      x: 0,
+      y: 0
+    }
+  }
 })

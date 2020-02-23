@@ -2,17 +2,17 @@
   <div>
     <div class="banner"
          @click="handleBannerClick">
-      <img class="banner-img" src="https://img1.qunarzz.com/vs_ceph_vs_tts/114c1ed3-4a6e-4253-9402-ae0eca0b29e9.jpg_r_640x420x95_474883e6.jpg"/>
+      <img class="banner-img" :src="bannerImg"/>
       <div class="banner-info">
-        <div class="banner-tittle">产品编号 1940265182</div>
+        <div class="banner-tittle">{{this.sightName}}</div>
         <div class="banner-number">
-          1/7
+          1/{{this.gallaryImgs.length}}
           <span class="iconfont arrow-icon">&#xe6dd;</span>
         </div>
       </div>
     </div>
     <common-gallary
-        :imgs="imgs"
+        :imgs="gallaryImgs"
         v-show="showGallary"
         @close="handleallaryClose"
         >
@@ -27,13 +27,14 @@ export default {
   components: {
     CommonGallary
   },
+  props: {
+    sightName: String,
+    bannerImg: String,
+    gallaryImgs: Array
+  },
   data () {
     return {
-      showGallary: false,
-      imgs: [
-        'https://img1.qunarzz.com/vs_ceph_vs_tts/114c1ed3-4a6e-4253-9402-ae0eca0b29e9.jpg_r_1280x840x95_49adaae3.jpg',
-        'https://img1.qunarzz.com/vs_ceph_vs_tts/c99aad79-88dd-4ccd-9392-a52e4cf49039.jpg_r_1280x840x95_768b4854.jpg'
-      ]
+      showGallary: false
     }
   },
   methods: {
@@ -55,7 +56,7 @@ export default {
     position relative
     overflow hidden
     height 0
-    padding-bottom 66.7%
+    padding-bottom 55%
     .banner-img
       width 100%
     .banner-info
